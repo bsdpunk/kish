@@ -1,6 +1,7 @@
 package twil
 
 import (
+	"../commands"
 	"bufio"
 	"encoding/json"
 	"fmt"
@@ -9,6 +10,16 @@ import (
 	"os"
 	"strings"
 )
+
+var TwilSubs = commands.Commands{
+	{
+		Name:      "send",
+		ShortName: "send",
+		Usage:     "Send Text Message",
+		Action:    SendText,
+		Category:  "twil",
+	},
+}
 
 var accountSid = string(os.Getenv("tsid"))
 var authToken = string(os.Getenv("ttoken"))

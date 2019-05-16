@@ -8,6 +8,7 @@ import (
 	"strings"
 	//	"../Explore"
 	//"github.com/urfave/cli"
+	"../commands"
 	"bufio"
 	"log"
 )
@@ -24,6 +25,36 @@ var (
 	loginPassword = string(os.Getenv("LDAPPassword"))
 )
 var ld *ldap.Conn
+
+var LdapSubs = commands.Commands{
+	{
+		Name:      "GetAllDNs",
+		ShortName: "all",
+		Usage:     "Get All DNs",
+		Action:    CmdGetAllDNs,
+		Category:  "ldaps",
+	},
+	//	{
+	//		Name:   "GetAllThirds",
+	//		Usage:  "Get All DNs",
+	//		Action: command.CmdGetAllThirds,
+	//		Flags:  []cli.Flag{},
+	//	},
+
+	//	{
+	//		Name:   "GetAllAttr",
+	//		Usage:  "Get All Attributes",
+	//		Action: command.CmdGetAllAttr,
+	//		Flags:  []cli.Flag{},
+	//	},
+	{
+		Name:      "Search",
+		ShortName: "search",
+		Usage:     "Search LDAP with LDAP filter object",
+		Action:    CmdSearch,
+		Category:  "ldaps",
+	},
+}
 
 //func init() (*ldap.Conn, error) {
 //tlsConfig := &tls.Config{InsecureSkipVerify: true}

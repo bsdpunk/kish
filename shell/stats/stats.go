@@ -1,9 +1,20 @@
 package stats
 
 import (
+	"../commands"
 	"fmt"
 	"runtime"
 )
+
+var StatsSubs = commands.Commands{
+	{
+		Name:      "PrintMemUsage",
+		ShortName: "mem",
+		Usage:     "Print Memory Usage of the Shell",
+		Action:    PrintMemUsage,
+		Category:  "stats",
+	},
+}
 
 func PrintMemUsage() {
 	var m runtime.MemStats
