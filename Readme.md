@@ -8,11 +8,11 @@ ldap all
 ```
 ## mem
 ```
-print memory stats
+stats mem
 ```
 ## twil
 ```
-twil +YOURNUMBER #with country code
+twil send
 ```
 
 

@@ -86,20 +86,21 @@ func CompletionEntry(prefix string, index int) string {
 	}
 }
 func NoAction() {
-	fmt.Println("Command not found")
+	fmt.Println("No action supplied with command")
 
 }
-func Shell() string {
+func Shell() {
 
 	ldaps.InitLDAP()
+	defer ld.Close()
 
 	for _, c := range coms {
 		list = append(list, c.Name)
 		list = append(list, c.ShortName)
-		for _, s := range c.SubCommands {
-			list = append(list, s.Name)
-			list = append(list, s.ShortName)
-		}
+		//		for _, s := range c.SubCommands {
+		//			list = append(list, s.Name)
+		//			list = append(list, s.ShortName)
+		//		}
 	}
 
 	prompt := "> "
@@ -130,5 +131,5 @@ L:
 		}
 	}
 
-	return "exit"
+	return
 }
