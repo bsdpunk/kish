@@ -15,11 +15,15 @@ var authToken = string(os.Getenv("ttoken"))
 var urlStr = string(os.Getenv("turl"))
 var number = string(os.Getenv("tnumber"))
 
-func SendText(to string) string {
+func SendText() {
 	// Set account keys & information
 
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println(urlStr)
+	//fmt.Println(urlStr)
+	fmt.Print("To$ ")
+	to, _ := reader.ReadString('\n')
+	to = strings.Replace(to, "\n", "", -1)
+
 	fmt.Print("Message Text$ ")
 	text, _ := reader.ReadString('\n')
 	text = strings.Replace(text, "\n", "", -1)
@@ -44,5 +48,5 @@ func SendText(to string) string {
 	} else {
 		fmt.Println(resp.Status)
 	}
-	return string(resp.Status)
+	return
 }
