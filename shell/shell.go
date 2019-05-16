@@ -118,14 +118,16 @@ L:
 
 		input := *result
 		words := strings.Fields(input)
-		if coms.HasCommand(words[0]) && len(words) < 2 {
-			cmd := coms.NameIs(words[0])
-			cmd.Action()
-		} else if coms.HasCommand(words[0]) && len(words) == 2 {
-			for _, i := range coms {
-				if i.SubCommands.HasCommand(words[1]) {
-					cmd := i.SubCommands.NameIs(words[1])
-					cmd.Action()
+		if len(words) > 0 {
+			if coms.HasCommand(words[0]) && len(words) < 2 {
+				cmd := coms.NameIs(words[0])
+				cmd.Action()
+			} else if coms.HasCommand(words[0]) && len(words) == 2 {
+				for _, i := range coms {
+					if i.SubCommands.HasCommand(words[1]) {
+						cmd := i.SubCommands.NameIs(words[1])
+						cmd.Action()
+					}
 				}
 			}
 		}
