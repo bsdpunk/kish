@@ -16,7 +16,7 @@ import (
 var (
 	//ldapServer = "ds.trozlabs.local:389"
 	ldapServer   = string(os.Getenv("LDAPServer"))
-	ldapBind     = "CN=Administrator,CN=Users,DC=trozlabs,DC=local"
+	ldapBind     = string(os.Getenv("LDAPBind"))
 	ldapPassword = string(os.Getenv("LDAPPassword"))
 
 	filterDN      = "(objectClass=*)"
