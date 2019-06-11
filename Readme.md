@@ -7,6 +7,15 @@ The ldap implimentation can currently unload all of ldap, or do a precision sear
 ldap search
 ldap all
 ```
+Must define ldap in enviormental variables.
+```
+LDAPPassword
+LDAPServer
+LDAPBind
+LDAPUser
+LDAPBase
+```
+
 ## mem
 Currently using the stats library you can see how much memory the shell is using.
 ```
