@@ -119,6 +119,7 @@ L:
 		input := *result
 		words := strings.Fields(input)
 		if len(words) > 0 {
+			readline.AddHistory(input)
 			if coms.HasCommand(words[0]) && len(words) < 2 {
 				cmd := coms.NameIs(words[0])
 				cmd.Action()

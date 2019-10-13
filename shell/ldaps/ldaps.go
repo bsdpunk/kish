@@ -16,7 +16,7 @@ import (
 var (
 	//ldapServer = "ds.trozlabs.local:389"
 	ldapServer   = string(os.Getenv("LDAPServer"))
-	ldapBind     = "CN=Administrator,CN=Users,DC=trozlabs,DC=local"
+	ldapBind     = string(os.Getenv("LDAPBind"))
 	ldapPassword = string(os.Getenv("LDAPPassword"))
 
 	filterDN      = "(objectClass=*)"
@@ -122,7 +122,7 @@ func CmdGetAllDNs() {
 		0,
 		0,
 		false,
-		"(objectClass=*)",
+		"(cn=*)",
 		[]string{},
 		nil,
 	)
@@ -133,7 +133,7 @@ func CmdGetAllDNs() {
 	sr, err := ld.Search(l)
 	if err != nil {
 		fmt.Println(err)
-	}
+	}else{
 	ns := sets.NewSet()
 	for _, entry := range sr.Entries {
 		//entry.PrettyPrint(1)
@@ -147,6 +147,7 @@ func CmdGetAllDNs() {
 
 	//fmt.Println(strings.Join(theSplit, ", "))
 	ns.PrintAll()
+}
 }
 
 func CmdSearch() {
@@ -168,14 +169,14 @@ func CmdSearch() {
 	)
 	sr, err := ld.Search(l)
 	if err != nil {
-		log.Fatal(err)
-	}
+		fmt.Println(err)
+	}else{
 
 	for _, entry := range sr.Entries {
 		entry.Print()
 		fmt.Println("")
 	}
-	return
+}
 }
 
 //func CmdGetAllThirds(c *cli.Context) {
